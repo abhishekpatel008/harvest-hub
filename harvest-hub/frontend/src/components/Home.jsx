@@ -9,14 +9,10 @@ export default function Home() {
     const [harvestData, setHarvestData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    useEffect(() => {
-        fetchProducts();
-    }, []);
 
     const fetchProducts = async () => {
 
         try {
-            setLoading(true);
             const response = await apiClient.get("/products"); // Axios GET request
             setHarvestData(response.data); // Update product state with data
         } catch (error) {
@@ -27,6 +23,9 @@ export default function Home() {
         }
     };
 
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     if (loading) {
         return (
